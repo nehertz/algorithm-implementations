@@ -46,6 +46,7 @@ def main():
     l2 = [1, 2, 3, 4, 5, 6, 7, 8]
     l3 = [1, 2, 3, 4, 5, 6, 8, 7]
 
+    timing.start()
     sort(l)
 
 if __name__ == '__main__':

@@ -5,6 +5,7 @@ Just an implementation of selection sort
 import timing
 
 def pretty_list(l, sorted_i):
+    """ Returns a selection sort list as a string with a pipe to separate the sorted sublist from the unsorted sublist """
     pretty = "["
 
     i = 0

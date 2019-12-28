@@ -15,7 +15,7 @@ def start():
 def time_print(time):
     """ Prints a formatted message with the elapsed amount of time """
     final_time = timedelta(seconds=time)
-    print("="*40 + "\n\nThe program took {}.{:03} seconds to execute.".format(final_time.seconds, final_time.microseconds))
+    print("="*40 + "\n\nThe process took {}.{:03} seconds to execute.".format(final_time.seconds, final_time.microseconds))
 
 def finish(start_time):
     """ Collects the time when the program exits and calculates

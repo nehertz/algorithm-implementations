@@ -3,6 +3,7 @@ Just an implementation of selection sort
 """
 
 import timing
+import sort_in
 
 def pretty_list(l, sorted_i):
     """ Returns a selection sort list as a string with a pipe to separate the sorted sublist from the unsorted sublist """
@@ -68,8 +69,38 @@ def main():
     l2 = [1, 2, 3, 4, 5, 6, 7, 8]
     l3 = [1, 2, 3, 4, 5, 6, 8, 7]
 
-    timing.start()
-    sort(l3)
+    # Begin user input
+    print("> Welcome to this implementation of bubble sort!")
+
+    option = '?'
+
+    while(option == '?'): # Check for input error
+        option = input("> 1. Manually enter input\n> 2. Enter input from a file\n")
+
+        if (option == '1'):
+            # Collect input from command line
+            l = sort_in.manual_in()
+
+            # Start timer and conduct search
+            timing.start()
+            sort(l)
+
+            return
+        elif (option == '2'):
+            # Collect input from file
+            l = sort_in.file_in()
+
+            # Start timer and conduct search
+            timing.start()
+            sort(l)
+
+            return
+        else:
+            print("> ERROR: Incorrect option.")
+            option = '?'
+            continue
+
+    return
 
 if __name__ == '__main__':
     main()

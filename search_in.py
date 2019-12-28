@@ -22,6 +22,12 @@ def manual_in():
         
         # Create the list from the input
         l = re.split(r"\s+", in_str)
+
+        for i, val in enumerate(l):
+            # Convert list values to int if need be
+            if (val.isnumeric()):
+                l[i] = int(l[i])
+
         confirm = '?'
 
         # Error checking
@@ -37,8 +43,14 @@ def manual_in():
                         print("> Please limit your search to alphanumerics.\n")
                         continue
 
+                    if (search.isnumeric()):
+                        # Convert search term to int if need be
+                        search = int(search)
+
+                    # Input checked and confirmed, return from function
                     return [l, search]
             elif (confirm == 'n'):
+                # Input denied, go back to input entry
                 continue
             else:
                 print("> ERROR: Please enter either 'y' for yes or 'n' for no.")
@@ -79,6 +91,11 @@ def file_in():
 
             l = (re.split(r"\s+", in_str))
 
+            for i, val in enumerate(l):
+                # Convert list values to int if need be
+                if (val.isnumeric()):
+                    l[i] = int(l[i])
+
             # Read search term from input with error checking
             search = f.readline()
 
@@ -86,6 +103,10 @@ def file_in():
                 # Incorrect input was entered
                 print("> Your file does not format its search term correctly.\n")
                 continue
+
+            if (search.isnumeric()):
+                # Convert search term to int if need be
+                search = int(search)
 
             # Print list and search term
             print("List: " + str(l))

@@ -1,13 +1,19 @@
 """
-Just an implementation of selection sort
+Just an implementation of insertion sort
 """
 
 import timing
 import sort_in
 
 def pretty_list(l, sorted_i):
-    """ Returns a selection sort list as a string with a pipe to separate the sorted sublist from the unsorted sublist """
-    
+    """ Returns a insertion sort list as a string with a pipe to separate the sorted sublist from the unsorted sublist """
+
+    length = len(l)
+
+    if (sorted_i == length):
+        # The list is sorted, return a simple stringified form of the list
+        return str(l)
+
     pretty = "["
 
     i = 0
@@ -18,11 +24,11 @@ def pretty_list(l, sorted_i):
 
     pretty += "| "
 
-    while (i < len(l) - 1):
+    while (i < length - 1):
         pretty += (str(l[i]) + ", ")
         i += 1
 
-    pretty += (str(l[len(l) - 1]) + "]")
+    pretty += (str(l[length - 1]) + "]")
 
     return pretty
 
@@ -33,37 +39,28 @@ def swap(l, i, j):
     l[j] = temp
 
 def sort(l):
+    # Set i to 1, since the first element is already sorted in its own sublist of size one
+    i = 1
     passes = 0
-    print("> Inital list:\t" + pretty_list(l, 0))
 
-    sorted_i = 0
+    print("> (" + str(passes) + ")\t" + pretty_list(l, i))
 
-    while (True):
+    while (i < len(l)):
         passes += 1
-        # Set i to make it so we only loop over the unsorted sublist
-        i = sorted_i
-        # Reset index of smallest number
-        small_i = sorted_i
+        j = i
 
-        while (i < len(l)):
-            if (l[i] < l[small_i]):
-                # New smallest number located
-                small_i = i
-            
-            i += 1
+        while (j > 0 and l[j - 1] > l[j]):
+            # Compare the current value with the elements in the sorted list to find its place
+            swap(l, j, j - 1)
+            j -= 1
 
-        # Place the smallest unsorted item at the end of the sorted sublist and increment sorted index
-        swap(l, sorted_i, small_i)
-        sorted_i += 1
+        i += 1
 
-        if (sorted_i == len(l) - 1):
-            # The sorted index is the last index of the list, meaning the entire list is sorted
-            print("> Sorted list:\t" + pretty_list(l, sorted_i))
+        print("> (" + str(passes) + ")\t" + pretty_list(l, i))
+
+        if (i == len(l)):
+            # The index is the last index of the list, meaning the entire list is sorted
             return
-
-        print("> Pass " + str(passes) + ":\t" + pretty_list(l, sorted_i))
-
-
 
 def main():
     # Begin user input
